@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:isims/controllers/RapportController.dart';
 import 'package:isims/controllers/homeController.dart';
 import 'package:isims/controllers/loginController.dart';
 import 'package:isims/vues/Rapports/ListRapports.dart';
@@ -72,8 +73,11 @@ class _HomePageState extends State<HomePage> {
           homeController.startCounter3(500);
         }
       });
+
+      rapportController.getRapports(context);
     }
 
+    RapportController rapportController = Get.put(RapportController());
     // _checkVisibility() {
     //   final RenderBox renderBoxi = _iKey.currentContext!.findRenderObject() as RenderBox;
     //   // final RenderBox renderBoxi1 = _i1Key.currentContext!.findRenderObject() as RenderBox;

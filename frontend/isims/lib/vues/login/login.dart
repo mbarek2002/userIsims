@@ -3,6 +3,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:isims/controllers/loginController.dart';
 import 'package:isims/model/loginModel.dart';
+import 'package:isims/vues/home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,8 +17,8 @@ class _LoginPageState extends State<LoginPage> {
   void initState(){
     // TODO: implement initState
     super.initState();
-    initialization();
-    FlutterNativeSplash.remove();
+    // initialization();
+    // FlutterNativeSplash.remove();
   }
 
   void initialization() async {
@@ -25,13 +26,9 @@ class _LoginPageState extends State<LoginPage> {
     // the splash screen is displayed.  Remove the following example because
     // delaying the user experience is a bad design practice!
     // ignore_for_file: avoid_print
-    print('ready in 3...');
     await Future.delayed(const Duration(seconds: 1));
-    print('ready in 2...');
     await Future.delayed(const Duration(seconds: 1));
-    print('ready in 1...');
     await Future.delayed(const Duration(seconds: 1));
-    print('go!');
     FlutterNativeSplash.remove();
   }
 
@@ -111,18 +108,20 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.blue,
                     child: TextButton(
                       onPressed: ()async{
+                        // if(loginController.matriculeController.text.trim().isNotEmpty &&loginController.motDePasseController.text.trim().isNotEmpty){
+                        //   // ScaffoldMessenger.of(context).showSnackBar(
+                        //   //   const SnackBar(content: Text('Processing Data'),duration: Duration(seconds: 1),),
+                        //   // );
+                        //   print(loginController.matriculeController.text.trim());
+                        //   print(loginController.motDePasseController.text);
+                        //   await loginController.login(loginController.matriculeController.text.trim(), loginController.motDePasseController.text.trim());
+                        // }else{
+                        //   ScaffoldMessenger.of(context).showSnackBar(
+                        //     const SnackBar(content: Text('enter matricule et mot de passe ')),
+                        //   );
+                        // }
                         if(loginController.matriculeController.text.trim().isNotEmpty &&loginController.motDePasseController.text.trim().isNotEmpty){
-                          // ScaffoldMessenger.of(context).showSnackBar(
-                          //   const SnackBar(content: Text('Processing Data'),duration: Duration(seconds: 1),),
-                          // );
-                          print(loginController.matriculeController.text.trim());
-                          print(loginController.motDePasseController.text);
-                          await loginController.login(loginController.matriculeController.text.trim(), loginController.motDePasseController.text.trim());
-                        }else{
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('enter matricule et mot de passe ')),
-                          );
-                        }
+                        Get.to(()=>HomePage());}
                       },
                       child:loginController.valid.value == true?
                       Text('Connexion',style: TextStyle(color: Colors.white,fontSize: 20),):

@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 class RapportController extends GetxController{
 
   TextEditingController rapportContentController = TextEditingController();
-  RxString rapportType="selectionner un type de rapport".obs;
+  RxString rapportType="selectionner un type de Reclamation".obs;
 
   List<String> items=["Personnel","Qualité"].obs;
    RxBool valid=true.obs;
@@ -40,6 +40,7 @@ class RapportController extends GetxController{
         status: "en cour de traitement"
     ),
   ].obs;
+  // var listeDeRapports = [].obs;
 
 
 
@@ -52,7 +53,7 @@ class RapportController extends GetxController{
           rapportType: rapportType.value,
           rapportContent: rapportContentController.text,
         seen: false,
-        status: ""
+        status: "n'est pas traité"
       );
 
       var response =  await http.post(Uri.parse(ajouterRapport),
@@ -64,7 +65,7 @@ class RapportController extends GetxController{
       if(jsonResponse["status"]){
         ScaffoldMessenger.of( context).showSnackBar(
             SnackBar(
-                content:Text("Le rapport a été envoyé avec succès.")
+                content:Text("La Reclamation a été envoyé avec succès.")
             )
         );
         Get.back();
@@ -73,7 +74,7 @@ class RapportController extends GetxController{
       else{
         ScaffoldMessenger.of( context).showSnackBar(
             SnackBar(
-                content:Text("Échec lors de l'envoi du rapport d'erreur.")
+                content:Text("Échec lors de l'envoi du Reclamation d'erreur.")
             )
         );
         valid.value=true;
@@ -82,7 +83,7 @@ class RapportController extends GetxController{
     }catch(e){
       ScaffoldMessenger.of( context).showSnackBar(
           SnackBar(
-              content:Text("Échec lors de l'envoi du rapport d'erreur.")
+              content:Text("Échec lors de l'envoi du Reclamation d'erreur.")
           )
       );
       print(e.toString());
@@ -94,6 +95,8 @@ class RapportController extends GetxController{
 
   }
 
+  RxList<dynamic> dynamicItems = <dynamic>[].obs;
+
   Future<void> getRapports(BuildContext context)async {
 
     try{
@@ -103,8 +106,12 @@ class RapportController extends GetxController{
       var jsonResponse =  jsonDecode(response.body);
 
       if(jsonResponse['status']){
-        listeDeRapports =jsonResponse['success'];
+        dynamicItems.assignAll(jsonResponse['success']);
+        print(dynamicItems.length);
+        print(dynamicItems);
+        listeDeRapports =   dynamicItems.map((item) => RapportModel.fromMap(item)).toList();
         valid.value=true;
+        print(listeDeRapports.length);
       }else{
         valid.value=true;
         print('something went wrong');

@@ -12,7 +12,7 @@ exports.addRapport = async(req,res,next)=>{
             rapportType:req.body.rapportType,
             rapportContent:req.body.rapportContent,
             seen:req.body.seen,
-            rapportStatus:req.body.rapportStatus
+            rapportStatus:req.body.status
         })
 
         console.log(rapport);
@@ -40,7 +40,8 @@ exports.addRapport = async(req,res,next)=>{
 exports.getRapports = async (req,res,next)=>{
     try{
         console.log(req.body.id);
-        let rapportList = await rapportModel.find({id:req.body.id});
+        // let rapportList = await rapportModel.find({id:req.body.id});
+        let rapportList = await rapportModel.find();
 
         console.log(rapportList);
 

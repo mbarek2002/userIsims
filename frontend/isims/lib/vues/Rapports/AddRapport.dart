@@ -20,72 +20,70 @@ class _AddRapportPageState extends State<AddRapportPage> {
         backgroundColor: Colors.blue,
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(
-          'Envoyer Un Rapport',
+          'Envoyer Une Reclamation',
           style: TextStyle(color: Colors.white),
         ),
       ),
       body: Form(
         child: Obx(()=>ListView(
           children: [
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
-            Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-            SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.01,
-            ),
-            Container(
-              width: MediaQuery.sizeOf(context).width* 0.98,
-              height: MediaQuery.sizeOf(context).height * 0.08,
-              // color: Colors.red,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.grey,
-                  width: 1.0,
-                ),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(
-                    left: MediaQuery.sizeOf(context).width * 0.02),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.list,
-                      color: Colors.blue,
-                      size: 25,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.sizeOf(context).width * 0.03,
-                    ),
-                    DropdownButton(
-                      hint: Text(
-                        rapportController.rapportType.value,
-                      ),
-                      underline: SizedBox(),
-                      icon: SizedBox(),
-                      items: rapportController.items.map((String items) {
-                        return DropdownMenuItem(
-                          value: items,
-                          child: Text(
-                            items,
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue) {
-                          rapportController.rapportType.value = newValue!;
-                        print(rapportController.rapportType.value);
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-                ],
-              ),
+            SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
+            // Column(
+            //     mainAxisAlignment: MainAxisAlignment.start,
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            // // SizedBox(height: MediaQuery.sizeOf(context).height * 0.01,),
+            // // Container(
+            // //   width: MediaQuery.sizeOf(context).width* 0.98,
+            // //   height: MediaQuery.sizeOf(context).height * 0.08,
+            // //   // color: Colors.red,
+            // //   decoration: BoxDecoration(
+            // //     border: Border.all(
+            // //       color: Colors.grey,
+            // //       width: 1.0,
+            // //     ),
+            // //     borderRadius: BorderRadius.circular(8.0),
+            // //   ),
+            // //   child: Padding(
+            // //     padding: EdgeInsets.only(
+            // //         left: MediaQuery.sizeOf(context).width * 0.02),
+            // //     child: Row(
+            // //       crossAxisAlignment: CrossAxisAlignment.center,
+            // //       children: [
+            // //         Icon(
+            // //           Icons.list,
+            // //           color: Colors.blue,
+            // //           size: 25,
+            // //         ),
+            // //         SizedBox(
+            // //           width: MediaQuery.sizeOf(context).width * 0.03,
+            // //         ),
+            // //         DropdownButton(
+            // //           hint: Text(
+            // //             rapportController.rapportType.value,
+            // //           ),
+            // //           underline: SizedBox(),
+            // //           icon: SizedBox(),
+            // //           items: rapportController.items.map((String items) {
+            // //             return DropdownMenuItem(
+            // //               value: items,
+            // //               child: Text(
+            // //                 items,
+            // //                 style: TextStyle(color: Colors.grey),
+            // //               ),
+            // //             );
+            // //           }).toList(),
+            // //           onChanged: (String? newValue) {
+            // //               rapportController.rapportType.value = newValue!;
+            // //             print(rapportController.rapportType.value);
+            // //           },
+            // //         ),
+            // //       ],
+            // //     ),
+            // //   ),
+            // // ),
+            //     ],
+            //   ),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
             Container(
                 width: MediaQuery.sizeOf(context).width * 0.98,
@@ -102,7 +100,7 @@ class _AddRapportPageState extends State<AddRapportPage> {
                 controller: rapportController.rapportContentController,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                      hintText: 'Ecrire votre Rapport ...',
+                      hintText: 'Ecrire votre Reclamation ...',
                       hintStyle: TextStyle(color: Colors.grey.withOpacity(0.9))),
                   maxLines: 10),
             ),
@@ -126,7 +124,6 @@ class _AddRapportPageState extends State<AddRapportPage> {
               ),
             ),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
-
           ],
         )),
       ),
